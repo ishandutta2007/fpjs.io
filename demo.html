@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no user-scalable=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Miriam+Libre&display=swap" rel="stylesheet">
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+  <title>FPJS PRO demo</title>
+  <script>
+    window.fpLayer = window.fpLayer || [];
+    function fp() { fpLayer.push(arguments); }
+    fp('config', 'client', 'sandbox');
+    fp('config', 'loaded', function (fp) { fpLoaded(fp) });
+  </script>
+  <script async src="https://cdn.fpjs.io/@2/fp.js"></script>
+  <style>
+    .miriam {
+      font-family: 'Miriam Libre', sans-serif;
+    }
+
+    .table-compact {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="text-center">
+          <h1 class="display-3 miriam">
+            Your ID:
+            <span style="color: red; font-weight: 800">BfaWr0y41F0qlV2n7s5g</span>
+          </h1>
+        </p>
+        <div class="card">
+          <h5 class="card-header text-center miriam">
+            YOUR CURRENT VISIT
+          </h5>
+          <div class="card-body p-0">
+            <div class="row no-gutters">
+              <div class="col-7">
+                <table class="table table-borderless table-compact m-2">
+                  <tbody>
+                    <tr>
+                      <th class="text-monospace">Location:</th>
+                      <td class="miriam">Kislovodsk, Stavropol Territory, Russia (45.1239, 44.1202)</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Browser:</th>
+                      <td class="miriam">Chrome 76.0.3809 on Mac OS X (10.14.6)</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Incognito?</th>
+                      <td clas="miriam">YES</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Bot?</th>
+                      <td clas="miriam">NO</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">IP address:</th>
+                      <td clas="miriam">23.96.197.18</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Device ID:</th>
+                      <td clas="miriam">Coming soon..</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div id="map-container" class="col-5"></div>
+            </div>
+          </div>
+        </div>
+        <h2 class="miriam text-center py-3">Your visit history:</h2>
+        <div class="card">
+          <h5 class="card-header text-center miriam" style="background-color: #444; color: #eee">
+            VISITED 12 MINUTES AGO, May 17th, 2019, 8:11am
+          </h5>
+          <div class="card-body p-0">
+            <div class="row no-gutters">
+              <div class="col-7">
+                <table class="table table-borderless table-compact m-2">
+                  <tbody>
+                    <tr>
+                      <th class="text-monospace">Location:</th>
+                      <td class="miriam">San Francisco, CA, USA</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Browser:</th>
+                      <td class="miriam">Safari 12.2 on iOS (10.13.6)</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Incognito?</th>
+                      <td clas="miriam">YES</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">IP address:</th>
+                      <td clas="miriam">23.96.197.18</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div id="map-container-2" class="col-5"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card my-3">
+            <h5 class="card-header text-center miriam" style="background-color: #444; color: #eee">
+              VISITED 2 DAYS AGO , May 15th, 2019, 6:43pm
+            </h5>
+            <div class="card-body p-0">
+              <div class="row no-gutters">
+                <div class="col-7">
+                  <table class="table table-borderless table-compact m-2">
+                    <tbody>
+                      <tr>
+                        <th class="text-monospace">Location:</th>
+                        <td class="miriam">Seattle, WA, USA</td>
+                      </tr>
+                      <tr>
+                        <th class="text-monospace">Browser:</th>
+                        <td class="miriam">Safari 12.2.1 on iOS (10.13.6)</td>
+                      </tr>
+                      <tr>
+                        <th class="text-monospace">Incognito?</th>
+                        <td clas="miriam">YES</td>
+                      </tr>
+                      <tr>
+                        <th class="text-monospace">IP address:</th>
+                        <td clas="miriam">23.96.197.18</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="map-container-3" class="col-5"></div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/demo.js"> </script>
+</body>
+
+</html>
