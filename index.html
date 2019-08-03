@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>FPJS PRO - fraud detection & browser fingerprinting API</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bootstrap4-pleasant.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script>
+    window.fpLayer = window.fpLayer || [];
+    function fp() { fpLayer.push(arguments); }
+    fp('config', 'client', '1IZEt206');
+    fp('config', 'autoSend', true);
+  </script>
+  <script async src="https://cdn.fpjs.io/@2/fp.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144459549-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-144459549-1');
+  </script>
+</head>
+
+<body class="bg-light">
+  <div class="bg-primary navbar-dark text-white">
+    <div class="container">
+      <nav class="navbar px-0 navbar-expand-lg navbar-dark">
+        <a href="/" class="navbar-brand">
+          <span class="nunito">FPJS</span>
+          <i id="nav-fp" class="material-icons">fingerprint</i>
+          <span class="nunito">PRO</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a href="#!trial" class="p-3 text-light" data-toggle="modal" data-target="#contact-modal" data-source="header">
+              Start your trial
+            </a>
+            <a href="/#features" class="p-3 text-decoration-none text-light" data-link="#features">
+              Features
+            </a>
+            <a href="/#demo" class="p-3 text-decoration-none text-light" data-link="#demo">
+              Demo
+            </a>
+            <a href="/#pricing" class="p-3 text-decoration-none text-light" data-link="#pricing">
+              Pricing
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col text-center">
+        <h1 id="main-logo">
+          FPJS
+          <i id="main-fp" class="material-icons red">fingerprint</i>
+          PRO
+        </h1>
+        <h2 id="accuracy">
+          <span class="red">99.5%</span> identification accuracy
+        </h2>
+        <button id="top-btn" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#contact-modal" data-source="main">
+          Contact us
+        </button>
+      </div>
+    </div>
+    <div id="industries">
+      <h3 id="fraud-header" class="text-center">Fraud detection API for your business</h3>
+      <div class="card-group">
+        <div class="card">
+          <img src="/img/ecommerce-round.svg" class="industry-img py-4 border-bottom" alt="e-commerce & retail">
+          <div class="card-body">
+            <h5 class="card-title text-center">E-commerce & Retail</h5>
+            <p class="card-text">
+              Every fraudulent order is money directly out of your pocket. With our best in class tools you can <b>stop
+                malicious users before they cost you real money</b>.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/img/news-round.svg" class="industry-img py-4 border-bottom" alt="news & content">
+          <div class="card-body">
+            <h5 class="card-title text-center">News & Content</h5>
+            <p class="card-text">
+              Users know how to evade your paywalls with incognito windows. Make sure that <b>users pay a fair price for
+                your content</b> on your site.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/img/payment-round.svg" class="industry-img py-4 border-bottom" alt="payment processing">
+          <div class="card-body">
+            <h5 class="card-title text-center">Payment Processing</h5>
+            <p class="card-text">
+              Confirm that <b>every payment you collect is real</b> and not an advanced bot using
+              multiple techniques to evade detection.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-group mt-4">
+        <div class="card">
+          <img src="/img/gaming-round.svg" class="industry-img py-4 border-bottom" alt="gaming">
+          <div class="card-body">
+            <h5 class="card-title text-center">Gaming</h5>
+            <p class="card-text">
+              <b>Catch users trying to break your system</b> via multiple accounts, devices, and IP addresses to
+              unjustly
+              enrich themselves.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/img/travel-round.svg" class="industry-img py-4 border-bottom" alt="travel & entertainment" />
+          <div class="card-body">
+            <h5 class="card-title text-center">Travel & Entertainment</h5>
+            <p class="card-text">
+              We can help you <b>confirm that every ticket sale is legitimate</b>.
+              Prevent bots from scraping your prices.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/img/more-round.svg" class="industry-img py-4 border-bottom" alt="custom solutions">
+          <div class="card-body">
+            <h5 class="card-title text-center">More</h5>
+            <p class="card-text">
+              We can build a custom solution that works for your industry.
+              <br>
+              <a href="#!trial" data-toggle="modal" data-target="#contact-modal" data-source="industry-more">
+                <b>Contact us</b></a>
+              to learn how.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALLENGES -->
+  <div class="bg-white pt-5">
+    <div class="container">
+      <h3 id="challenges-header" class="text-center">We understand the challenges you're facing</h3>
+      <div id="challenges-container" class="row">
+        <div id="challenges-left" class="col-sm-8">
+          <div class="row mb-5 no-gutters">
+            <div class="col-3 col-md-2 text-center">
+              <div class="challenge-box">#1</div>
+            </div>
+            <div class="col">
+              <div class="challenge-answer">Fraud is more advanced than ever</div>
+            </div>
+          </div>
+          <div class="row mb-5">
+            <div class="col">
+              The old tools to catch fraudulent users are not good enough anymore.
+              You have to stay up to date to fight the latest evasion techniques. We continuously research new methods
+              to keep you safe.
+            </div>
+          </div>
+          <div class="row mb-5 no-gutters">
+            <div class="col-3 col-md-2 text-center">
+              <div class="challenge-box">#2</div>
+            </div>
+            <div class="col">
+              <div class="challenge-answer">Cookies are not enough</div>
+            </div>
+          </div>
+          <div class="row mb-5">
+            <div class="col">
+              Everyone on the internet knows how to clear their cookies these days. You need a tracking method that
+              survives clearing cookies.
+              With our fingerprint + machine learning we can help you identify bad users across browsing sessions,
+              incognito windows or clearing cookies.
+            </div>
+          </div>
+          <div class="row mb-5 no-gutters">
+            <div class="col-3 col-md-2 text-center">
+              <div class="challenge-box">#3</div>
+            </div>
+            <div class="col">
+              <div class="challenge-answer">Bots are harder to detect</div>
+            </div>
+          </div>
+          <div class="row mb-5">
+            <div class="col">
+              Today's bots look like real users. There is bot software out there that runs full browsers to look just
+              like real visitors.
+              Every year they get more advanced. We can help you detect whether any of your visitors is a suspected bot
+              and then you can have them prove they are humans.
+            </div>
+          </div>
+          <div class="row mb-5 no-gutters">
+            <div class="col-3 col-md-2 text-center">
+              <div class="challenge-box">#4</div>
+            </div>
+            <div class="col">
+              <div class="challenge-answer">Incognito detection is unreliable</div>
+            </div>
+          </div>
+          <div class="row mb-5">
+            <div class="col">
+              Users know that they can avoid paywalls by opening incognito windows.
+              We can work with you to craft custom paywalls combining a unique, fingerprint driven trial period.
+              This means you don't need to block all incognito browsers but can actually show more trial content and get
+              more paying customers in the end.
+            </div>
+          </div>
+        </div>
+        <div id="challenges-right" class="col-sm-4 bg-light">
+          <h4 class="fw-600 mb-5 text-center mt-4">
+            <strong>What we offer</strong>
+          </h4>
+          <p>
+            We offer a complete solution to your user identification problems.
+          </p>
+          <p>
+            Our team will be there with you from the initial contact, collecting requirements,
+            implementing a custom solution,
+            and delivering the software that you need to identify suspicious users that are trying to take advantage of
+            you.
+          </p>
+          <p>
+            With our software you can truly understand your website visitors, get a clear view of your traffic,
+            including incognito sessions.
+          </p>
+          <p>
+            Use our tools to automate your fraud-detection processes. Get instant answers about any visitor.
+            Measure how many visitors are using incognito or how many are bots.
+          </p>
+          <p>
+            Receive notifications about suspicious activity on your website.
+          </p>
+          <p>
+            <a href="#!trial" data-toggle="modal" data-target="#contact-modal" data-source="we-offer">
+              <b>Contact us</b>
+            </a>
+            to learn how FPJS PRO can help your business.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURES-->
+  <div id="features" class="bg-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col my-4">
+          <h3><b>FPJS PRO can...</b></h3>
+        </div>
+      </div>
+      <div class="card-group">
+        <div class="card">
+          <div class="card-header">
+            <i class="material-icons">fingerprint</i>
+            <span>
+              Browser fingerprinting
+            </span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              generate the highest entropy browser fingerprint on the market.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <i class="material-icons">group_add</i>
+            <span>
+              Anonymous user identification
+            </span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              track bad users even when they try to stay anonymous.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <i class="material-icons">router</i>
+            <span> Bot detection </span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              detect JavaScript bots.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-group mt-1">
+        <div class="card">
+          <div class="card-header">
+            <i class="material-icons">device_unknown</i>
+            <span>
+              Incognito mode detection
+            </span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              track users across incognito browsing sessions with the newest methods.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <i class="material-icons">location_on</i>
+            <span>
+              Geolocation
+            </span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              determine where your users are located.
+            </p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <i class="material-icons">developer_mode</i>
+            <span>API & Webhook</span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              send you data directly to drive automated workflows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEMO -->
+  <div id="demo" class="container-fluid py-5 bg-white">
+    <div class="row">
+      <div class="col my-4 text-center">
+        <button id="demo-call" class="btn btn-danger btn-lg">
+          <h3 id="demo-call-progress" class="pt-2">
+            <i class="material-icons" style="vertical-align: middle">fingerprint</i>
+            run the demo
+          </h3>
+        </button>
+        <div class="row">
+          <div class="col d-md-none">
+            <div class="card mt-3 demo-card" style="display:none">
+              <div class="card-header text-white bg-primary">
+                Your identity
+              </div>
+              <div class="card-body text-left">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>ID:&nbsp;&nbsp;</b><code class="demo-visitorid"></code></li>
+                  <li class="list-group-item">
+                    <b>Location:</b>
+                    <div>
+                      <code class="demo-location"></code>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Browser:</b>
+                    <div>
+                      <code class="demo-browser"></code>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer">
+                <div class="demo-hint invisible">
+                  <b>Hint:</b>
+                  now open your browser in incognito mode and try again.
+                  Your ID will <b>not</b> change.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col offset-lg-1 col-lg-10 offset-xl-3 col-xl-6 d-none d-md-block">
+            <div class="demo-card card mt-3" style="display:none">
+              <div class="card-header text-white bg-primary">
+                Your identity
+              </div>
+              <div class="card-body text-left">
+                <div class="row">
+                  <div class="col-lg-3 col-md-4">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><b>ID:</b></li>
+                      <li class="list-group-item"><b>Location:</b></li>
+                      <li class="list-group-item"><b>Browser:</b></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-9 col-md-8">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <code class="demo-visitorid"></code>
+                      </li>
+                      <li class="list-group-item">
+                        <code class="demo-location"></code>
+                      </li>
+                      <li class="list-group-item">
+                        <code class="demo-browser"></code>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="demo-hint invisible">
+                  <b>Hint:</b>
+                  now open your browser in incognito mode and try again.
+                  Your ID will <b>not</b> change.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div id="pricing" class="container-fluid bg-light">
+    <div class="container pb-5">
+      <div class="row p-5">
+        <div class="col text-center">
+          <h2><b>Pricing</b></h2>
+        </div>
+      </div>
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Starter</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$99 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>100k identifications included</li>
+              <li>100k API calls</li>
+              <li>30 day visit history</li>
+              <li>Email support</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary" data-toggle="modal"
+              data-target="#contact-modal" data-source="pricing-starter">Get started</button>
+          </div>
+        </div>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">Contact us</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li><b>Unlimited</b> identifications</li>
+              <li><b>Unlimited</b> API calls</li>
+              <li><b>Unlimited</b> visit history</li>
+              <li><b>24/7</b> dedicated support</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary" data-toggle="modal"
+              data-target="#contact-modal" data-source="pricing-enterprise">Contact us</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+
+          <footer class="pt-4  pt-md-5">
+            <div class="row">
+              <div class="col-12 col-md">
+                <small class="d-block mb-3 text-muted">&copy; fpjs.io 2019</small>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Contact us</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="mailto:pro@fpjs.io">pro@fpjs.io</a></li>
+                  <!-- <li><a class="text-muted" href="#">800-800-8000</a></li> -->
+                </ul>
+              </div>
+              <div class="col-6 col-md">
+                <h5>Resources</h5>
+                <ul class="list-unstyled text-small">
+                  <li><a class="text-muted" href="/privacy.html">Privacy policy</a></li>
+                  <li><a class="text-muted" href="/terms.html">Terms and conditions</a></li>
+                  <li>
+                    <a class="text-muted" href="https://github.com/valve" target="_blank">
+                      Team
+                    </a>
+                  </li>
+                  <li><a class="text-muted" href="mailto:work@fpjs.io">Work with us</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="text-center">
+              Made in Chicago, USA
+              <div>
+                <i id="nav-fp" class="material-icons md-72">
+                  all_inclusive
+                </i>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center">
+            Start your <b class="nunito">FPJS PRO</b> trial</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="contact-form-errors" class="alert alert-danger" style="display: none">
+          </div>
+          <form id="contact-form" method="POST" action="#">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-label-group mt-2">
+                  <input id="contact-website" name="website" type="text" class="form-control" placeholder="Your website"
+                    required>
+                  <label for="contact-website">Your website</label>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-label-group mt-2">
+                  <input id="contact-email" name="email" type="email" class="form-control" placeholder="Your email"
+                    required>
+                  <label for="contact-email">Your email</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-label-group mt-2">
+                  <input id="contact-name" name="name" type="text" class="form-control" placeholder="Your name"
+                    required>
+                  <label for="contact-name">Your name</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="form-label-group mt-2">
+                  <textarea id="contact-comment" name="comment" rows="3" class="form-control" required=""
+                    placeholder="Tell us about your use case"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-s-12 mt-2">
+                <input type="submit" class="btn btn-primary btn-block" value="  Send  ">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="/js/index.min.js"></script>
+</body>
+
+</html>

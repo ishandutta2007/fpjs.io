@@ -1,0 +1,366 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700,900");
+
+/* taken from bootstrap examples */
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group > input,
+.form-label-group > label {
+  height: 3.125rem;
+  padding: .75rem;
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  pointer-events: none;
+  cursor: text; /* Match the input under the label */
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: 1.25rem;
+  padding-bottom: .25rem;
+}
+
+.form-label-group input:not(:placeholder-shown) ~ label {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+@supports (-ms-ime-align: auto) {
+  .form-label-group > label {
+    display: none;
+  }
+  .form-label-group input::-ms-input-placeholder {
+    color: #777;
+  }
+}
+
+/* Fallback for IE
+-------------------------------------------------- */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .form-label-group > label {
+    display: none;
+  }
+  .form-label-group input:-ms-input-placeholder {
+    color: #777;
+  }
+}
+/* Rules for sizing the icon. */
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.material-icons.md-72 {
+  font-size: 72px;
+}
+
+.material-icons.md-144 {
+  font-size: 144px;
+}
+
+/* Rules for using icons as black on a light background. */
+
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.nunito {
+  font-family: "Nunito"
+}
+
+.red {
+  color: red;
+}
+
+.white {
+  color: white;
+}
+
+.bg-red {
+  background-color: red;
+}
+
+h1, h2, h3 {
+  font-family: "Nunito"
+}
+
+.f-2 {
+  font-size: 2rem;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+#industries {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+#nav-fp {
+  vertical-align: text-bottom;
+  padding-bottom: 2px;
+  font-size: 18px;
+}
+
+#main-logo {
+  font-size: 3rem;
+}
+
+@media (min-width: 320px) {
+  #main-logo {
+    font-size: 3.3rem;
+  }
+}
+
+@media (min-width: 360px) {
+  #main-logo {
+    font-size: 3.7rem;
+  }
+}
+
+@media (min-width: 400px) {
+  #main-logo {
+    font-size: 4.2rem;
+  }
+}
+@media (min-width: 760px) {
+  #main-logo {
+    font-size: 5.5rem;
+  }
+}
+
+#main-fp {
+  font-size: 36px;
+}
+
+@media (min-width: 320px) {
+  #main-fp {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 360px) {
+  #main-fp {
+    font-size: 44px;
+  }
+}
+
+@media (min-width: 400px) {
+  #main-fp {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 576px) {
+  #main-fp {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 768px) {
+  #main-fp {
+    font-size: 67px;
+  }
+}
+
+#accuracy {
+  font-size: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 320px) {
+  #accuracy {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 360px) {
+  #accuracy {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 400px) {
+  #accuracy {
+    font-size: 1.7rem;
+  }
+}
+@media (min-width: 760px) {
+  #accuracy {
+    font-size: 2rem;
+  }
+}
+
+#fraud-header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+@media (min-width: 320px) {
+  #fraud-header {
+    font-size: 1.7rem;
+  }
+}
+
+@media (min-width: 360px) {
+  #fraud-header {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 400px) {
+  #fraud-header {
+    font-size: 2.2rem;
+    margin-bottom: 1.4rem;
+  }
+}
+
+#challenges-header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+@media (min-width: 320px) {
+  #challenges-header {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 360px) {
+  #challenges-header {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 400px) {
+  #challenges-header {
+    font-size: 2rem;
+    margin-bottom: 1.4rem;
+  }
+}
+
+#challenges-container {
+  border-radius: 10px;
+}
+@media (min-width: 768px) {
+  #challenges-container {
+  border: 1px solid #dee2e6
+  }
+}
+
+#challenges-left {
+  padding-top: 1rem;
+}
+@media (min-width: 768px) {
+  #challenges-left {
+    padding: 2rem;
+  }
+}
+#challenges-right {
+  padding-top: 1rem;
+}
+@media (min-width: 768px) {
+  #challenges-right {
+    padding: 2rem;
+  }
+}
+
+.tile {
+  background-color: white;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.industry-img {
+  margin: auto;
+}
+
+.challenge-box {
+  border: 3px solid #555;
+  font-size: 2rem;
+  height: 4rem;
+  width: 4rem;
+  padding-top: 0.3rem;
+}
+
+.challenge-answer {
+  padding-left: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.2;
+  padding-bottom: 0.1rem;
+}
+@media (min-width: 768px) {
+  .challenge-answer {
+    padding-top: 1rem;
+    padding-left: 0;
+  }
+}
+.card-header>.material-icons, span {
+  vertical-align: middle;
+}
