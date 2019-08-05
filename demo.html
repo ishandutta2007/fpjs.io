@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Miriam+Libre&display=swap" rel="stylesheet">
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <title>FPJS PRO demo</title>
   <script>
     window.fpLayer = window.fpLayer || [];
@@ -17,6 +18,10 @@
   </script>
   <script async src="https://cdn.fpjs.io/@2/fp.js"></script>
   <style>
+    [v-cloak] {
+      display: none;
+    }
+
     .miriam {
       font-family: 'Miriam Libre', sans-serif;
     }
@@ -24,21 +29,44 @@
     .table-compact {
       margin-bottom: 0;
     }
+
+    .incognito-header {
+      background-color: #444;
+      color: #eee;
+    }
+
+    #vid {
+      color: red;
+      font-weight: 800;
+    }
+
+    #show-my {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      margin-right: -50%;
+      top: 50%;
+      left: 50%;
+      width: 20rem;
+      height: 6rem;
+      box-shadow: 2rem;
+      box-shadow: 0 0 50px 50px rgba(150, 150, 150, 0.8);
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div id="demo" class="container">
     <div class="row">
       <div class="col">
         <p class="text-center">
           <h1 class="display-3 miriam">
             Your ID:
-            <span style="color: red; font-weight: 800">BfaWr0y41F0qlV2n7s5g</span>
+            <span id="vid" v-cloak>{{visitorId}}</span>
           </h1>
         </p>
         <div class="card">
-          <h5 class="card-header text-center miriam">
+          <h5 class="card-header text-center miriam" v-bind:class="{ 'incognito-header': incognito() }">
+            <img src="/img/incognito.svg" v-if="incognito()" v-cloak />
             YOUR CURRENT VISIT
           </h5>
           <div class="card-body p-0">
@@ -48,27 +76,27 @@
                   <tbody>
                     <tr>
                       <th class="text-monospace">Location:</th>
-                      <td class="miriam">Kislovodsk, Stavropol Territory, Russia (45.1239, 44.1202)</td>
+                      <td class="miriam" v-cloak>{{fullLocation()}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Browser:</th>
-                      <td class="miriam">Chrome 76.0.3809 on Mac OS X (10.14.6)</td>
+                      <td class="miriam" v-cloak>{{fullBrowser()}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Incognito?</th>
-                      <td clas="miriam">YES</td>
+                      <td clas="miriam" v-cloak>{{fullIncognito()}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Bot?</th>
-                      <td clas="miriam">NO</td>
+                      <td clas="miriam" v-cloak>{{bot()}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">IP address:</th>
-                      <td clas="miriam">23.96.197.18</td>
+                      <td clas="miriam" v-cloak>{{ipAddress()}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Device ID:</th>
-                      <td clas="miriam">Coming soon..</td>
+                      <td clas="miriam" v-cloak>{{deviceId()}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -77,42 +105,23 @@
             </div>
           </div>
         </div>
-        <h2 class="miriam text-center py-3">Your visit history:</h2>
-        <div class="card">
-          <h5 class="card-header text-center miriam" style="background-color: #444; color: #eee">
-            VISITED 12 MINUTES AGO, May 17th, 2019, 8:11am
-          </h5>
-          <div class="card-body p-0">
-            <div class="row no-gutters">
-              <div class="col-7">
-                <table class="table table-borderless table-compact m-2">
-                  <tbody>
-                    <tr>
-                      <th class="text-monospace">Location:</th>
-                      <td class="miriam">San Francisco, CA, USA</td>
-                    </tr>
-                    <tr>
-                      <th class="text-monospace">Browser:</th>
-                      <td class="miriam">Safari 12.2 on iOS (10.13.6)</td>
-                    </tr>
-                    <tr>
-                      <th class="text-monospace">Incognito?</th>
-                      <td clas="miriam">YES</td>
-                    </tr>
-                    <tr>
-                      <th class="text-monospace">IP address:</th>
-                      <td clas="miriam">23.96.197.18</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div id="map-container-2" class="col-5"></div>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div v-cloak v-if="showDemoHistory()">
+          <h2 class="text-center miriam my-5">Demo visit history</h2>
+          <img src="/img/demo-history.png" width="100%" />
+          <button id="show-my" class="btn btn-large btn-danger">
+            <h2>show my visit history</h2>
+          </button>
         </div>
-        <div class="card my-3">
-            <h5 class="card-header text-center miriam" style="background-color: #444; color: #eee">
-              VISITED 2 DAYS AGO , May 15th, 2019, 6:43pm
+        <div v-cloak v-if="visits.length > 0">
+          <h2 class="text-center miriam my-5">My visit history</h2>
+          <div class="card mb-5" v-for="visit in visits">
+            <h5 class="card-header text-center miriam" v-bind:class="{ 'incognito-header': visit.incognito }">
+              <img src="/img/incognito.svg" v-if="visit.incognito" v-cloak />
+              Visited {{visit.timeAgo}}
             </h5>
             <div class="card-body p-0">
               <div class="row no-gutters">
@@ -121,30 +130,33 @@
                     <tbody>
                       <tr>
                         <th class="text-monospace">Location:</th>
-                        <td class="miriam">Seattle, WA, USA</td>
+                        <td class="miriam" v-cloak>{{visit.fullLocation}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">Browser:</th>
-                        <td class="miriam">Safari 12.2.1 on iOS (10.13.6)</td>
+                        <td class="miriam" v-cloak>{{visit.fullBrowser}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">Incognito?</th>
-                        <td clas="miriam">YES</td>
+                        <td clas="miriam" v-cloak>{{visit.formattedIncognito}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">IP address:</th>
-                        <td clas="miriam">23.96.197.18</td>
+                        <td clas="miriam" v-cloak>{{visit.ip}}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div id="map-container-3" class="col-5"></div>
+                <div id="map-container" class="col-5"></div>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js"></script>
   <script src="js/demo.js"> </script>
 </body>
 
