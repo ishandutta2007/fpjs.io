@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no user-scalable=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Miriam+Libre&display=swap" rel="stylesheet">
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <title>FPJS PRO demo</title>
   <script>
@@ -61,12 +62,12 @@
         <p class="text-center">
           <h1 class="display-3 miriam">
             Your ID:
-            <span id="vid" v-cloak>{{visitorId}}</span>
+            <span id="vid" v-cloak>{{currentVisit.visitorId}}</span>
           </h1>
         </p>
         <div class="card">
-          <h5 class="card-header text-center miriam" v-bind:class="{ 'incognito-header': incognito() }">
-            <img src="/img/incognito.svg" v-if="incognito()" v-cloak />
+          <h5 class="card-header text-center miriam" v-bind:class="{'incognito-header': currentVisit.incognito}">
+            <img src="/img/incognito.svg" v-if="currentVisit.incognito" v-cloak />
             YOUR CURRENT VISIT
           </h5>
           <div class="card-body p-0">
@@ -76,32 +77,32 @@
                   <tbody>
                     <tr>
                       <th class="text-monospace">Location:</th>
-                      <td class="miriam" v-cloak>{{fullLocation()}}</td>
+                      <td class="miriam" v-cloak>{{currentVisit.formattedLocation}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Browser:</th>
-                      <td class="miriam" v-cloak>{{fullBrowser()}}</td>
+                      <td class="miriam" v-cloak>{{currentVisit.formattedBrowser}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Incognito?</th>
-                      <td clas="miriam" v-cloak>{{fullIncognito()}}</td>
+                      <td clas="miriam" v-cloak>{{currentVisit.formattedIncognito}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Bot?</th>
-                      <td clas="miriam" v-cloak>{{bot()}}</td>
+                      <td clas="miriam" v-cloak>{{currentVisit.formattedBot}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">IP address:</th>
-                      <td clas="miriam" v-cloak>{{ipAddress()}}</td>
+                      <td clas="miriam" v-cloak>{{currentVisit.ip}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Device ID:</th>
-                      <td clas="miriam" v-cloak>{{deviceId()}}</td>
+                      <td clas="miriam" v-cloak>{{currentVisit.deviceId}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div id="map-container" class="col-5"></div>
+              <div id="current-visit-map-container" class="col-5"></div>
             </div>
           </div>
         </div>
@@ -109,7 +110,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <div v-cloak v-if="showDemoHistory()">
+        <div v-cloak v-if="!currentVisit.visitorFound">
           <h2 class="text-center miriam my-5">Demo visit history</h2>
           <img src="/img/demo-history.png" width="100%" />
           <button id="show-my" class="btn btn-large btn-danger">
@@ -117,24 +118,37 @@
           </button>
         </div>
         <div v-cloak v-if="visits.length > 0">
-          <h2 class="text-center miriam my-5">My visit history</h2>
-          <div class="card mb-5" v-for="visit in visits">
-            <h5 class="card-header text-center miriam" v-bind:class="{ 'incognito-header': visit.incognito }">
-              <img src="/img/incognito.svg" v-if="visit.incognito" v-cloak />
-              Visited {{visit.timeAgo}}
-            </h5>
-            <div class="card-body p-0">
+          <h2 class="text-center miriam my-5">Your visit history</h2>
+          <div class="card mb-2" v-for="visit in visits">
+            <div class="card-header" v-bind:class="{ 'incognito-header': visit.incognito }">
+              <div class="row">
+                <div class="col-11 text-center miriam">
+                  <h5>
+                    <img src="/img/incognito.svg" v-if="visit.incognito" v-cloak />
+                    {{visit.formattedTimeAgo}}
+                  </h5>
+                </div>
+                <div class="col-1">
+                  <button class="btn btn-sm btn-outline-secondary p-0" v-on:click="visit.onArrowClick()">
+                    <i class="material-icons" v-if="visit.collapsed">keyboard_arrow_up</i>
+                    <i class="material-icons" v-if="!visit.collapsed">keyboard_arrow_down</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body p-0" v-bind:class="{collapse: visit.collapsed}">
               <div class="row no-gutters">
                 <div class="col-7">
                   <table class="table table-borderless table-compact m-2">
                     <tbody>
                       <tr>
                         <th class="text-monospace">Location:</th>
-                        <td class="miriam" v-cloak>{{visit.fullLocation}}</td>
+                        <td class="miriam" v-cloak>{{visit.formattedLocation}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">Browser:</th>
-                        <td class="miriam" v-cloak>{{visit.fullBrowser}}</td>
+                        <td class="miriam" v-cloak>{{visit.formattedBrowser}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">Incognito?</th>
@@ -147,7 +161,7 @@
                     </tbody>
                   </table>
                 </div>
-                <div id="map-container" class="col-5"></div>
+                <div class="col-5" v-bind:id="visit.mapContainerId"></div>
               </div>
             </div>
           </div>
@@ -155,7 +169,7 @@
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js"></script>
   <script src="js/demo.js"> </script>
 </body>
