@@ -77,6 +77,7 @@ function Visit(index, response) {
   this.collapsed = true;
   this.mapInitialized = false;
   this.mapContainerId = "map-container-" + index;
+  this.leadMode = false;
 }
 
 Visit.prototype = {
@@ -84,7 +85,7 @@ Visit.prototype = {
     this.collapsed = !this.collapsed;
     if (!this.mapInitialized) {
       var visit = this;
-      setTimeout(function(){
+      setTimeout(function () {
         visit.initMap();
       }, 100);
     }
@@ -98,6 +99,12 @@ Visit.prototype = {
       zoom: 5 // starting zoom
     });
     this.mapInitialized = true;
+  },
+  onClickGet: function () {
+    setTimeout(function(){
+      $("#contact-email").focus();
+      console.log("Focused");
+    }, 500);
   }
 }
 
@@ -135,9 +142,9 @@ function initApp(response) {
 function initMap(visit) {
   var styleId = visit.incognito ? 'dark-v10' : 'streets-v11';
   var map = new mapboxgl.Map({
-    container: 'current-visit-map-container', 
+    container: 'current-visit-map-container',
     style: 'mapbox://styles/mapbox/' + styleId,
-    center: [visit.lng, visit.lat], 
+    center: [visit.lng, visit.lat],
     zoom: 3 // smaller is wider
   });
   var size = 200;
@@ -155,7 +162,7 @@ function initMap(visit) {
     },
 
     render: function () {
-      var duration = 1000;
+      var duration = 2000;
       var t = (performance.now() % duration) / duration;
 
       var radius = size / 2 * 0.3;
@@ -193,27 +200,27 @@ function initMap(visit) {
       [visit.lng - 1, visit.lat - 1],
       [visit.lng + 1, visit.lat + 1]
     ]);
-    // map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+    map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
 
-    // map.addLayer({
-    //   "id": "points",
-    //   "type": "symbol",
-    //   "source": {
-    //     "type": "geojson",
-    //     "data": {
-    //       "type": "FeatureCollection",
-    //       "features": [{
-    //         "type": "Feature",
-    //         "geometry": {
-    //           "type": "Point",
-    //           "coordinates": [coords.lng, coords.lat]
-    //         }
-    //       }]
-    //     }
-    //   },
-    //   "layout": {
-    //     "icon-image": "pulsing-dot"
-    //   }
-    // });
+    map.addLayer({
+      "id": "points",
+      "type": "symbol",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": [{
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [visit.lng, visit.lat]
+            }
+          }]
+        }
+      },
+      "layout": {
+        "icon-image": "pulsing-dot"
+      }
+    });
   });
 };
