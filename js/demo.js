@@ -98,10 +98,15 @@ Visit.prototype = {
       center: [this.lng, this.lat], // starting position [lng, lat]
       zoom: 5 // starting zoom
     });
+    var markerImg = document.createElement("img");
+    markerImg.src="img/reddot.svg";
+    markerImg.width = 20;
+    markerImg.height = 20;
+    new mapboxgl.Marker(markerImg).setLngLat([this.lng, this.lat]).addTo(map);
     this.mapInitialized = true;
   },
   onClickGet: function () {
-    setTimeout(function(){
+    setTimeout(function () {
       $("#contact-email").focus();
       console.log("Focused");
     }, 500);
@@ -115,16 +120,19 @@ function fpLoaded(fp) {
 }
 
 function initApp(response) {
-  var visit = new Visit(0, response);
+  var currentVisit = new Visit(0, response);
   var app = new Vue({
     el: "#demo",
     data: {
-      currentVisit: visit,
+      currentVisit: currentVisit,
       visits: []
     },
     methods: {
       showHistory: function () {
         return this.visits.length > 0;
+      },
+      refresh: function () {
+        location.reload();
       }
     }
   });
@@ -136,10 +144,10 @@ function initApp(response) {
       }
     });
   }
-  initMap(visit);
+  initCurrentVisitMap(currentVisit);
 }
 
-function initMap(visit) {
+function initCurrentVisitMap(visit) {
   var styleId = visit.incognito ? 'dark-v10' : 'streets-v11';
   var map = new mapboxgl.Map({
     container: 'current-visit-map-container',
@@ -147,7 +155,7 @@ function initMap(visit) {
     center: [visit.lng, visit.lat],
     zoom: 3 // smaller is wider
   });
-  var size = 200;
+  var size = 150;
 
   var pulsingDot = {
     width: size,
@@ -162,7 +170,7 @@ function initMap(visit) {
     },
 
     render: function () {
-      var duration = 2000;
+      var duration = 1000;
       var t = (performance.now() % duration) / duration;
 
       var radius = size / 2 * 0.3;

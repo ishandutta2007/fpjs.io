@@ -3,23 +3,24 @@
   margin-bottom: 1rem;
 }
 
-.form-label-group > input,
-.form-label-group > label {
+.form-label-group>input, .form-label-group>label {
   height: 3.125rem;
   padding: .75rem;
 }
 
-.form-label-group > label {
+.form-label-group>label {
   position: absolute;
   top: 0;
   left: 0;
   display: block;
   width: 100%;
-  margin-bottom: 0; /* Override default `<label>` margin */
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
   line-height: 1.5;
   color: #495057;
   pointer-events: none;
-  cursor: text; /* Match the input under the label */
+  cursor: text;
+  /* Match the input under the label */
   border: 1px solid transparent;
   border-radius: .25rem;
   transition: all .1s ease-in-out;
@@ -50,7 +51,7 @@
   padding-bottom: .25rem;
 }
 
-.form-label-group input:not(:placeholder-shown) ~ label {
+.form-label-group input:not(:placeholder-shown)~label {
   padding-top: .25rem;
   padding-bottom: .25rem;
   font-size: 12px;
@@ -59,8 +60,9 @@
 
 /* Fallback for Edge
 -------------------------------------------------- */
+
 @supports (-ms-ime-align: auto) {
-  .form-label-group > label {
+  .form-label-group>label {
     display: none;
   }
   .form-label-group input::-ms-input-placeholder {
@@ -70,8 +72,9 @@
 
 /* Fallback for IE
 -------------------------------------------------- */
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .form-label-group > label {
+  .form-label-group>label {
     display: none;
   }
   .form-label-group input:-ms-input-placeholder {
@@ -79,9 +82,84 @@
   }
 }
 
+.bg-primary {
+  background-color: #393e9e !important;
+}
 
-#nav-fp {
-  vertical-align: text-bottom;
-  padding-bottom: 2px;
-  font-size: 18px;
+[v-cloak] {
+  display: none;
+}
+
+.miriam {
+  font-family: 'Miriam Libre', sans-serif;
+}
+
+.table-compact {
+  margin-bottom: 0;
+}
+
+.incognito-header {
+  background-color: #444;
+  color: #eee;
+}
+
+.container-centered {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  margin-right: -50%;
+  top: 50%;
+  left: 50%;
+}
+
+#show-my {
+  width: 20rem;
+  height: 6rem;
+  box-shadow: 2rem;
+  box-shadow: 0 0 50px 50px rgba(150, 150, 150, 0.8);
+}
+
+/*
+Extra small devices (portrait phones, less than 576px) 
+No media query since this is the default in Bootstrap because it is "mobile first"
+*/
+
+#vid-container {
+  font-size: 1.6rem;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+  #vid-container {
+    font-size: 2.1rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+
+@media (min-width: 768px) {
+  #vid-container {
+    font-size: 2.8rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+  #vid-container {
+    font-size: 3.5rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+
+@media (min-width: 1200px) {
+  #vid-container {
+    font-size: 4.2rem;
+  }
+}
+
+#vid {
+  color: red;
+  font-weight: 800;
 }
