@@ -9,7 +9,7 @@ export var ago = (time: Date) => {
   } else if (secAgo < 3300) {
     return f(secAgo / 60, "minute");
   } else if (secAgo < 3900) { 
-    return "about an hour ago";
+    return "about one hour ago";
   } else if (secAgo < 82800) {
     return f(secAgo / 60 / 60, "hour");
   } else if (secAgo < 90000) {
