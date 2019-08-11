@@ -1,4 +1,6 @@
-$('#contact-form').on('submit', function (e) {
+import * as $ from "jquery";
+import 'bootstrap/js/dist/modal';
+$('#contact-form').on('submit', (e) => {
   gtag("event", "lead-submit", { event_category: "lead", event_label: "attempt" });
   e.preventDefault();
   var payload = {
@@ -13,10 +15,10 @@ $('#contact-form').on('submit', function (e) {
     dataType: 'json',
     contentType: 'application/json',
     data: JSON.stringify(payload)
-  }).catch(function (err) {
+  }).catch(() => {
     gtag("event", "lead-submit", { event_category: "lead", event_label: "error" });
     alert("Error occurred, contact us at: support@fpjs.io");
-  }).then(function (response) {
+  }).then((response: any) => {
     var $errorsDiv = $('#contact-form-errors');
     if (response.errors && response.errors.length > 0) {
       gtag("event", "lead-submit", { event_category: "lead", event_label: "validation-fail" });
@@ -31,9 +33,7 @@ $('#contact-form').on('submit', function (e) {
       $errorsDiv.empty();
       $errorsDiv.hide();
       $('#contact-modal').modal('hide');
-      setTimeout(function () {
-        alert('Thanks, we received your data');
-      }, 300);
+      setTimeout(() => { alert('Thanks, we received your data') }, 300);
     }
   });
 });

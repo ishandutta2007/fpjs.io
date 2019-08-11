@@ -3,11 +3,14 @@ var webpack = require('webpack')
 
 module.exports = {
   mode: process.env["ENVIRONMENT"] || "development",
-  entry: './src/index',
+  entry: {
+    index: './src/index',
+    demo: './src/demo'
+  },
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'index.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -32,5 +35,10 @@ module.exports = {
     // https://stackoverflow.com/a/43596713
     extensions: ['.ts', '.js', '.vue', '.json']
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
+    })
+  ]
 }

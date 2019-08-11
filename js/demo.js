@@ -1,6 +1,3 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoidmFsdmUxIiwiYSI6ImNqeXUwdHlnejA5YzMzaHBnN3R4OXF1czEifQ.4-Wne3WDiafdfFGLSTkFiQ';
-
-
 
 function Visit(index, response) {
   this.index = index;

@@ -7,13 +7,17 @@
   "license": "",
   "private": false,
   "dependencies": {
-    "date-fns": "^1.30.1",
+    "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",
+    "mapbox-gl": "^1.2.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@types/bootstrap": "^4.3.1",
     "@types/gtag.js": "^0.0.2",
     "@types/jquery": "^3.3.31",
+    "@types/mapbox-gl": "^0.54.1",
+    "@types/node": "^12.7.1",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",

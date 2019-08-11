@@ -46,7 +46,7 @@ export var bool = function (value: boolean) {
   return value ? "YES" : "NO";
 }
 
-export var formatBot = function (value: number) {
+export var bot = function (value: number) {
   if (value < 0.6) {
     return "NO";
   } else if (value < 0.8) {
