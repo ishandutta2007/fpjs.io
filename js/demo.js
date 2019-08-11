@@ -137,7 +137,7 @@ function initApp(response) {
     }
   });
   if (response.visitorFound) {
-    var url = "https://v2.api.fpjs.io/visitors/" + response.visitorId + "/?token=sandbox-api-key&limit=6";
+    var url = "https://v2.api.fpjs.io/visitors/" + response.visitorId + "/?token=Mvd6yiC30AsocC2G8fsY&limit=6";
     $.getJSON(url, function (visitsResponse) {
       for (var i = 1; i < visitsResponse.visits.length; i++) {
         app.visits.push(new Visit(i, visitsResponse.visits[i]));
