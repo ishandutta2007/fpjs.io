@@ -17,7 +17,7 @@
     window.fpLayer = window.fpLayer || [];
     function fp() { fpLayer.push(arguments); }
     fp('config', 'client', '1IZEt206');
-    fp('config', 'autoSend', true);
+    fp('config', 'loaded', function (fp) { fpLoaded(fp) });
   </script>
   <script async src="https://cdn.fpjs.io/@2/fp.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144459549-1"></script>
