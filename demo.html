@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no user-scalable=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Miriam+Libre&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/materialdesignicons.min.css" />
+  <link href="css/demo.css" rel="stylesheet">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+  <title>FPJS PRO demo</title>
+  <script src="js/demo.js"> </script>
+  <script>
+    window.fpLayer = window.fpLayer || [];
+    function fp() { fpLayer.push(arguments); }
+    fp('config', 'client', '1IZEt206');
+    fp('config', 'loaded', function (fp) { fpLoaded(fp) });
+  </script>
+  <script async src="https://cdn.fpjs.io/@2/fp.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144459549-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-144459549-1');
+  </script>
+</head>
+
+<body>
+  <div class="bg-primary navbar-dark text-white">
+    <div class="container">
+      <nav class="navbar px-0 navbar-expand-lg navbar-dark">
+        <a href="/" class="navbar-brand">
+          <span class="miriam">FPJS PRO</span>
+          <i id="nav-fp" class="mdi mdi-fingerprint"></i>
+          <span class="miriam">DEMO</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a href="#!trial" class="p-3 text-light" data-toggle="modal" data-target="#contact-modal"
+              data-source="header">
+              Start your trial
+            </a>
+            <a href="https://github.com/fpjspro/fpjs.io/tree/new-demo" class="p-3 text-light" target="_blank">
+              <i class="mdi mdi-github-face"></i>
+              Edit on GitHub
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div id="demo" class="container">
+    <div class="row">
+      <div class="col">
+        <h1 id="vid-container" class="miriam text-center text-md-left mt-2">
+          Your ID:
+          <span id="vid" v-cloak>{{currentVisit.visitorId}}</span>
+        </h1>
+        </p>
+        <div class="card">
+          <h5 class="card-header miriam text-center text-md-left" v-if="false">
+            LOADING...
+          </h5>
+          <h5 class="card-header miriam text-center text-md-left" v-cloak
+            v-bind:class="{'incognito-header': currentVisit.incognito}">
+            <img src="/img/incognito.svg" v-if="currentVisit.incognito" v-cloak />
+            YOUR CURRENT VISIT
+          </h5>
+          <div class="card-body p-0">
+            <div class="row no-gutters">
+              <div class="col-lg-7">
+                <table class="table table-borderless table-compact m-2">
+                  <tbody>
+                    <tr>
+                      <th class="text-monospace">Location:</th>
+                      <td class="miriam" v-cloak>
+                        {{currentVisit.formattedLocation}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Browser:</th>
+                      <td class="miriam" v-cloak>{{currentVisit.formattedBrowser}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">
+                        Incognito?
+                      </th>
+                      <td class="miriam" v-cloak>
+                        <span v-if="!currentVisit.incognito">
+                          {{currentVisit.formattedIncognito}}
+                          <small>(try opening this demo in private tab to see it in action)</small>
+                        </span>
+                        <b v-if="currentVisit.incognito">
+                          {{currentVisit.formattedIncognito}}
+                        </b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Bot?</th>
+                      <td class="miriam" v-cloak>{{currentVisit.formattedBot}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">IP:</th>
+                      <td class="miriam" v-cloak>{{currentVisit.ip}}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-monospace">Device ID:</th>
+                      <td class="miriam" v-cloak>{{currentVisit.deviceId}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div id="current-visit-map-container" class="col-lg-5" style="min-height: 250px">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button class="btn btn-lg btn-primary" data-toggle="modal" data-target="#contact-modal" data-source="demo">
+            Get FPJS PRO
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div v-cloak v-if="!currentVisit.visitorFound">
+          <h2 class="text-center miriam my-5">Demo visit history</h2>
+          <img src="/img/demo-history.png" width="100%" />
+          <button id="show-my" class="btn btn-large btn-danger container-centered" v-on:click="refresh()">
+            <h2>show my visit history</h2>
+          </button>
+        </div>
+        <div v-cloak v-if="visits.length > 0">
+          <h2 class="miriam my-4 text-center text-md-left">Your visit history</h2>
+          <div class="card mb-2" v-for="visit in visits">
+            <div class="card-header" v-bind:class="{ 'incognito-header': visit.incognito }">
+              <div class="row">
+                <div class="col-lg-11 col-10 miriam">
+                  <h5>
+                    <img src="/img/incognito.svg" v-if="visit.incognito" v-cloak />
+                    {{visit.formattedTimeAgo}}
+                  </h5>
+                </div>
+                <div class="col-lg-1 col-2">
+                  <button class="btn btn-sm btn-outline-secondary py-0" v-on:click="visit.onArrowClick()">
+                    <i class="mdi mdi-arrow-up" v-if="visit.collapsed"></i>
+                    <i class="mdi mdi-arrow-down" v-if="!visit.collapsed"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-0" v-bind:class="{collapse: visit.collapsed}">
+              <div class="row no-gutters">
+                <div class="col-lg-7">
+                  <table class="table table-borderless table-compact m-2">
+                    <tbody>
+                      <tr>
+                        <th class="text-monospace">Location:</th>
+                        <td class="miriam" v-cloak>{{visit.formattedLocation}}</td>
+                      </tr>
+                      <tr>
+                        <th class="text-monospace">Browser:</th>
+                        <td class="miriam" v-cloak>{{visit.formattedBrowser}}</td>
+                      </tr>
+                      <tr>
+                        <th class="text-monospace">Incognito?</th>
+                        <td class="miriam" v-cloak>{{visit.formattedIncognito}}</td>
+                      </tr>
+                      <tr>
+                        <th class="text-monospace">IP:</th>
+                        <td class="miriam" v-cloak>{{visit.ip}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-lg-5" v-bind:id="visit.mapContainerId" style="min-height: 200px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <footer class="pt-4  pt-md-5">
+          <div class="row border-top pt-3">
+            <div class="col-12 col-md-5 text-center text-md-left">
+              <h5>Resources</h5>
+              <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="/privacy.html">Privacy policy</a></li>
+                <li><a class="text-muted" href="/terms.html">Terms and conditions</a></li>
+                <li>
+                  <a class="text-muted" href="https://github.com/valve" target="_blank">
+                    Team
+                  </a>
+                </li>
+                <li><a class="text-muted" href="mailto:work@fpjs.io">Work with us</a></li>
+              </ul>
+            </div>
+            <div class="col-12 col-md-7 text-center text-md-left">
+              Questions? Talk to a founder via
+              <a href="mailto:valentin@fpjs.io">email</a>.
+            </div>
+          </div>
+          <div class="text-center">
+            Made in Chicago, USA
+            <small class="d-block mb-3 text-muted">&copy; fpjs.io 2019</small>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center">
+            Start your <b class="nunito">FPJS PRO</b> trial</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="contact-form-errors" class="alert alert-danger" style="display: none">
+          </div>
+          <form id="contact-form" method="POST" action="#">
+            <div class="form-label-group mt-2">
+              <input id="contact-email" name="email" type="email" class="form-control" placeholder="Your email"
+                required>
+              <label for="contact-email">Your email</label>
+            </div>
+            <div class="form-label-group mt-2">
+              <input id="contact-name" name="name" type="text" class="form-control" placeholder="Your name" required>
+              <label for="contact-name">Your name</label>
+            </div>
+            <div class="form-label-group mt-2">
+              <input id="contact-website" name="website" type="text" class="form-control" placeholder="Your website"
+                required>
+              <label for="contact-website">Your website</label>
+            </div>
+            <div>
+              <input type="submit" class="btn btn-success btn-block" value="  Send  ">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js"></script>
+  <script src="js/lead.js"> </script>
+</body>
+</html>

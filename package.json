@@ -1,0 +1,12 @@
+{
+  "name": "fpjs.io",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:fpjspro/fpjs.io.git",
+  "author": "Valentin Vasilyev <valentin@fingerprintjs.com>",
+  "license": "Private",
+  "private": false,
+  "dependencies": {
+    "date-fns": "^1.30.1"
+  }
+}
