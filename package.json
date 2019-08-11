@@ -4,9 +4,16 @@
   "main": "index.js",
   "repository": "git@github.com:fpjspro/fpjs.io.git",
   "author": "Valentin Vasilyev <valentin@fingerprintjs.com>",
-  "license": "Private",
+  "license": "",
   "private": false,
   "dependencies": {
-    "date-fns": "^1.30.1"
+    "date-fns": "^1.30.1",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3",
+    "ts-loader": "^6.0.4",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
   }
 }
