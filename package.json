@@ -23,6 +23,6 @@
     "webpack-cli": "^3.3.6"
   },
   "scripts": {
-    "build": "node node_modules/webpack/bin/webpack.js"
+    "build": "webpack"
   }
 }

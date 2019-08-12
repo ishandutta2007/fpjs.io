@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  mode: process.env["NODE_ENV"] || "development",
+  mode: process.env["WEBPACK_ENV"] || "development",
   entry: {
     index: './src/index',
     demo: './src/demo'
@@ -48,7 +48,7 @@ module.exports = {
     })
   ]
 }
-if (process.env.NODE_ENV === 'production') {
+if (process.env.WEBPACK_ENV === 'production') {
   module.exports.devtool = 'none';
 } else {
   module.exports.devtool = '#eval-source-map';
