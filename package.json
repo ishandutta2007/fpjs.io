@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "git@github.com:fpjspro/fpjs.io.git",
   "author": "Valentin Vasilyev <valentin@fingerprintjs.com>",
-  "license": "",
+  "license": "MIT",
   "private": false,
   "dependencies": {
     "bootstrap": "^4.3.1",
@@ -23,6 +23,6 @@
     "webpack-cli": "^3.3.6"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "node node_modules/webpack/bin/webpack.js"
   }
 }
