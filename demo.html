@@ -9,10 +9,7 @@
   <link rel="stylesheet" type="text/css" href="/css/materialdesignicons.min.css" />
   <link href="css/demo.css" rel="stylesheet">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
   <title>FPJS PRO demo</title>
-  <script src="js/demo.js"> </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144459549-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -74,12 +71,12 @@
                     <tr>
                       <th class="text-monospace">Location:</th>
                       <td class="miriam" v-cloak>
-                        {{currentVisit.formattedLocation}}
+                        {{currentVisit.formattedLocation()}}
                       </td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Browser:</th>
-                      <td class="miriam" v-cloak>{{currentVisit.formattedBrowser}}</td>
+                      <td class="miriam" v-cloak>{{currentVisit.formattedBrowser()}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">
@@ -87,17 +84,17 @@
                       </th>
                       <td class="miriam" v-cloak>
                         <span v-if="!currentVisit.incognito">
-                          {{currentVisit.formattedIncognito}}
+                          {{currentVisit.formattedIncognito()}}
                           <small>(try opening this demo in private tab to see it in action)</small>
                         </span>
                         <b v-if="currentVisit.incognito">
-                          {{currentVisit.formattedIncognito}}
+                          {{currentVisit.formattedIncognito()}}
                         </b>
                       </td>
                     </tr>
                     <tr>
                       <th class="text-monospace">Bot?</th>
-                      <td class="miriam" v-cloak>{{currentVisit.formattedBot}}</td>
+                      <td class="miriam" v-cloak>{{currentVisit.formattedBot()}}</td>
                     </tr>
                     <tr>
                       <th class="text-monospace">IP:</th>
@@ -105,7 +102,7 @@
                     </tr>
                     <tr>
                       <th class="text-monospace">Device ID:</th>
-                      <td class="miriam" v-cloak>{{currentVisit.deviceId}}</td>
+                      <td class="miriam" v-cloak>{{currentVisit.formattedDeviceId()}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -139,7 +136,7 @@
                 <div class="col-lg-11 col-10 miriam">
                   <h5>
                     <img src="/img/incognito.svg" v-if="visit.incognito" v-cloak />
-                    {{visit.formattedTimeAgo}}
+                    {{visit.formattedTimeAgo()}}
                   </h5>
                 </div>
                 <div class="col-lg-1 col-2">
@@ -157,15 +154,15 @@
                     <tbody>
                       <tr>
                         <th class="text-monospace">Location:</th>
-                        <td class="miriam" v-cloak>{{visit.formattedLocation}}</td>
+                        <td class="miriam" v-cloak>{{visit.formattedLocation()}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">Browser:</th>
-                        <td class="miriam" v-cloak>{{visit.formattedBrowser}}</td>
+                        <td class="miriam" v-cloak>{{visit.formattedBrowser()}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">Incognito?</th>
-                        <td class="miriam" v-cloak>{{visit.formattedIncognito}}</td>
+                        <td class="miriam" v-cloak>{{visit.formattedIncognito()}}</td>
                       </tr>
                       <tr>
                         <th class="text-monospace">IP:</th>
@@ -249,10 +246,14 @@
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/timeago.js@3.0.2/dist/timeago.min.js"></script>
-  <script src="js/lead.js"> </script>
+  <script src="/dist/demo.js"></script>
+  <script>
+    window.fpLayer = window.fpLayer || [];
+    function fp() { fpLayer.push(arguments); }
+    fp('config', 'client', '1IZEt206');
+    fp('config', 'loaded', fpjsio.fpLoaded);
+  </script>
+  <script async src="https://cdn.fpjs.io/@2/fp.js"></script>
 </body>
 
 </html>

@@ -24,7 +24,8 @@ export var ago = (time: Date) => {
 }
 
 var f = (val: number, unit: string) => {
-  return p(Math.ceil(val), unit) + " ago";
+  var roundedVal = Math.round(val);
+  return roundedVal.toString() +' ' + p(roundedVal, unit) + " ago";
 }
 
 var p = (val: number, unit: string) => {

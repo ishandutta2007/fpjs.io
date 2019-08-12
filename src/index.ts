@@ -1,3 +1,7 @@
+/*!
+  * fpjs.io index.js
+  * Copyright 2019 https://fpjs.io
+  */
 import * as $ from "jquery";
 import './lead-form';
 

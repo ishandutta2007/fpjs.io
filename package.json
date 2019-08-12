@@ -16,11 +16,13 @@
     "@types/bootstrap": "^4.3.1",
     "@types/gtag.js": "^0.0.2",
     "@types/jquery": "^3.3.31",
-    "@types/mapbox-gl": "^0.54.1",
     "@types/node": "^12.7.1",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6"
+  },
+  "scripts": {
+    "build": "webpack"
   }
 }

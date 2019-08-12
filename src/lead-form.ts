@@ -9,8 +9,8 @@ $('#contact-form').on('submit', (e) => {
     name: $('#contact-name').val(),
     comment: $('#contact-comment').val()
   };
-  jQuery.ajax({
-    url: "https://admin.fpjs.io/leads",
+  $.ajax({
+    url: process.env.FPJS_LEAD_URL,
     type: 'post',
     dataType: 'json',
     contentType: 'application/json',

@@ -2,7 +2,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  mode: process.env["ENVIRONMENT"] || "development",
+  mode: process.env["NODE_ENV"] || "development",
   entry: {
     index: './src/index',
     demo: './src/demo'
@@ -10,7 +10,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: '[name].js'
+    filename: '[name].js',
+    library: "fpjsio"
   },
   module: {
     rules: [
@@ -33,12 +34,22 @@ module.exports = {
   },
   resolve: {
     // https://stackoverflow.com/a/43596713
-    extensions: ['.ts', '.js', '.vue', '.json']
+    extensions: ['.ts', '.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
   },
   devtool: '#eval-source-map',
   plugins: [
     new webpack.EnvironmentPlugin({
       MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
+      FPJS_API_TOKEN: process.env.FPJS_API_TOKEN,
+      FPJS_LEAD_URL: process.env.FPJS_LEAD_URL
     })
   ]
+}
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = 'none';
+} else {
+  module.exports.devtool = '#eval-source-map';
 }
