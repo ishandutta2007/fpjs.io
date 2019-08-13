@@ -222,3 +222,8 @@ function initCurrentVisitMap(visit: Visit) {
     });
   });
 };
+
+$('[data-toggle=modal]').on('click', (e) => {
+  var source = $(e.currentTarget).data("source");
+  gtag("event", "contact-click", { event_category: "contact", event_label: source });
+});
