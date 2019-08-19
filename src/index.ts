@@ -19,3 +19,5 @@ $('[data-link]').on('click', (e) => {
     el.scrollIntoView({ behavior: 'smooth' });
   }
 });
+var _i = new Image(1,1);
+_i.src="https://j.fpjs.io/We7DidQMrka1QAqGY0SP.gif";
