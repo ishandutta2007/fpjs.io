@@ -227,5 +227,3 @@ $('body').on('click', '[data-toggle=modal]', (e) => {
   var source = $(e.currentTarget).data("source");
   gtag("event", "contact-click", { event_category: "contact", event_label: source });
 });
-var _i = new Image(1,1);
-_i.src="https://j.fpjs.io/We7DidQMrka1QAqGY0Sq.gif";
