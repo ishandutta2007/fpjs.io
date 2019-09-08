@@ -3,6 +3,7 @@
   * Copyright 2019 https://fpjs.io
   */
 import * as $ from "jquery";
+import "bootstrap";
 import './lead-form';
 
 

@@ -3,6 +3,7 @@
   * Copyright 2019 https://fpjs.io
   */
 import * as $ from "jquery";
+import "bootstrap";
 import Vue from "vue";
 import * as mapboxgl from "mapbox-gl";
 import * as format from "./format";
